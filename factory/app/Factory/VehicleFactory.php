@@ -22,15 +22,15 @@ class VehicleFactory {
         }
     }
 
-    public function createByDistanceAndWeight(int $distance, int $weight, float $costPerKm, string $fuelType) {
+    public function createByDistanceAndWeight(int $distance, int $weight) {
         if ($distance < 20 && $weight < 20) {
-            return new Bicycle($costPerKm, $fuelType);
+            return new Bicycle(0.0, 'muscle');
         }
 
         if ($weight > 200) {
-            return new Truck($costPerKm, $fuelType);
+            return new Truck(2.5, 'fuel');
         }
 
-        return new Car($costPerKm, $fuelType);
+        return new Car(0.5, 'essence');
     }
 }
