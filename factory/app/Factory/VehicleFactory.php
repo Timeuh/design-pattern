@@ -5,17 +5,11 @@ namespace App\Factory;
 use App\Entity\Bicycle;
 use App\Entity\Car;
 use App\Entity\Truck;
-use App\Entity\Vehicle;
+use App\Entity\VehicleType;
 use Exception;
 
-enum VehicleType {
-    case TRUCK;
-    case CAR;
-    case BICYCLE;
-}
-
 class VehicleFactory {
-    public function create(Vehicle $type, float $costPerKm, string $fuelType) {
+    public function create(VehicleType $type, float $costPerKm, string $fuelType) {
         switch ($type) {
             case VehicleType::TRUCK:
                 return new Truck($costPerKm, $fuelType);
@@ -29,7 +23,7 @@ class VehicleFactory {
     }
 
     public function createByDistanceAndWeight(int $distance, int $weight, float $costPerKm, string $fuelType) {
-        if ($distance < 20) {
+        if ($distance < 20 && $weight < 20) {
             return new Bicycle($costPerKm, $fuelType);
         }
 
